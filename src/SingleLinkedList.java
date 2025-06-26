@@ -49,5 +49,42 @@ public class SingleLinkedList {
     protected void decrementSize() {
         size--;
     }
+
+    //push method
+    public void push(Customer customer) {
+        Node newNode = new Node(customer);
+
+        if (isEmpty()) {
+            setHead(newNode);
+            setTail(newNode);
+        } else {
+            tail.setNext(newNode);
+            setTail(newNode);
+        }
+        incrementSize();
+        System.out.println(customer.getNama() + "Masuk ke antrian");
+        traverse();
+    }
+
+    //pop method
+    public void pop() {
+        if(isEmpty()) {
+            System.out.println("Antrian kosong tidak ada pelanggan untuk di layani");
+            return;
+        }
+
+        Customer customerDilayani = head.getData();
+        System.out.println("Melayani pelanggan");
+        System.out.println(customerDilayani);
+
+        setHead(head.getNext());
+        decrementSize();
+
+        if(isEmpty()) {
+            setTail(null);
+        }
+
+        traverse();
+    }
     
 }
