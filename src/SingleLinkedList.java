@@ -62,20 +62,18 @@ public class SingleLinkedList {
             setTail(newNode);
         }
         incrementSize();
-        System.out.println(customer.getNama() + "Masuk ke antrian");
-        traverse();
+        System.out.println("Pelanggan " + customer.getNama() + " berhasil ditambahkan ke antrian!");
     }
 
     //pop method
-    public void pop() {
+    public Customer pop() {
         if(isEmpty()) {
-            System.out.println("Antrian kosong tidak ada pelanggan untuk di layani");
-            return;
+            System.out.println("Antrian kosong! Tidak ada pelanggan untuk dilayani.");
+            return null;
         }
 
         Customer customerDilayani = head.getData();
-        System.out.println("Melayani pelanggan");
-        System.out.println(customerDilayani);
+        System.out.println("Pelanggan " + customerDilayani.getNama() + " (No. " + customerDilayani.getNomorAntrian() + ") sedang dilayani!");
 
         setHead(head.getNext());
         decrementSize();
@@ -84,7 +82,29 @@ public class SingleLinkedList {
             setTail(null);
         }
 
-        traverse();
+        return customerDilayani;
+    }
+
+    //display method
+    public void display() {
+        System.out.println("\n===== ANTRIAN RESTORAN =====");
+        
+        if (isEmpty()) {
+            System.out.println("Antrian kosong");
+        } else {
+            Node current = head;
+            int posisi = 1;
+            while (current != null) {
+                Customer customer = current.getData();
+                System.out.println("[" + customer.getNomorAntrian() + "] " + customer.getNama() + 
+                                 " - Waktu kedatangan: " + customer.getWaktuKedatanganFormatted());
+                current = current.getNext();
+                posisi++;
+            }
+        }
+        
+        System.out.println("=============================");
+        System.out.println("Total pelanggan dalam antrian: " + size);
     }
     
 }

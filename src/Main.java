@@ -22,15 +22,17 @@ public class Main {
                     String nama = input.nextLine();
                     Customer customer = new Customer(nama); // Deklarasi & inisialisasi dalam blok
                     antrian.push(customer);
+                    antrian.display();
                     break;
                 }
 
                 case 2:
                     antrian.pop();
+                    antrian.display();
                     break;
 
                 case 3:
-                    antrian.traverse();
+                    antrian.display();
                     break;
 
                 case 4:
